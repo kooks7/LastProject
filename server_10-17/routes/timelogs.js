@@ -75,12 +75,19 @@ router.get('/', function (req, res) {
                                         FinalResultObj.id = member_no;
                                         FinalResultObj.date = timeConvertDay(parseInt(JSON.parse(blockResult)[m].Value.timestamp));
                                         FinalResultObj.time = timeConvertTime(parseInt(JSON.parse(blockResult)[m].Value.timestamp));
-                                        FinalResultObj.type = ((JSON.parse(blockResult))[m].Value.status == "1")?"퇴근":"출근";
+                                        FinalResultObj.type = ((JSON.parse(blockResult))[m].Value.status == "1")?"출근":"퇴근";
     
                                         totalArr.push(FinalResultObj);
                                         FinalResultArr.push((JSON.parse(blockResult)[m].Value.timestamp));
                                     }
-                                    total= calTime(FinalResultArr);
+                                    let Min = calTime(FinalResultArr)
+                                    let Hour = 0;
+                                    if(Min>60){
+                                        Hour = Min / 60;
+                                        Min = Min % 60;
+                                        
+                                    }
+                                    total= Math.floor(Hour)+"시간"+Math.floor(Min);
                                     
                                     res.send({ totalArr, total });
                                 } else {
@@ -107,6 +114,7 @@ router.get('/', function (req, res) {
                             time : '',
                             type : "근무 기록이 없습니다",
                         }
+                        
                         const total=0;
                         //totalArr.push(FinalResultObj);
                         res.send({ totalArr,total });
