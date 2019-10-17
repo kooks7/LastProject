@@ -27,11 +27,7 @@ app.use(session({
   }
   }));
 
-const contact=require('./routes/contact');
-app.use('/contact', contact);
 app.use('/nfc', require('./routes/nfc'));
-const medical=require('./routes/medical');
-app.use('/medical', medical);
 const admins=require('./routes/admins');
 app.use('/admins', admins);
 const timelogs=require('./routes/timelogs');

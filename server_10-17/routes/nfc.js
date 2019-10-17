@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const medical_BC_Service = require('../service_bc/medical_bc');
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/SmartHC';
+const url = 'mongodb://70.12.229.178:27017/SmartHC';
 
 
 router.get('/', function (req, res) {
