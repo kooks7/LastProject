@@ -72,16 +72,19 @@ router.get('/', function (req, res, next) {
                                             console.log(JSON.parse(blockResult));
                                             
                                               let l = 0;
+                                              // 오류 없이 타임스탬프에서 시간을 계산하기 위한 과정
                                             for(m=0;m<JSON.parse(blockResult).length;m++){
                                          
                                                 // 예외처리 : 출근했을 때 조회하는 기능
                                                 console.log("status",(JSON.parse(blockResult)[0].Value.status))          
                                                 // 처음 블록이 "0" 일때 넘어가기
-                                                if((JSON.parse(blockResult)[0].Value.status) == "1"){
+                                                if((JSON.parse(blockResult)[0].Value.status) == "0"){
                                                     m++;
+                                                    continue;
+                                                    
                                                 }
                                                 // 마지막 데이터가 1이 아니고 0일때 마지막 블록 빼고 계산
-                                                if((JSON.parse(blockResult)[JSON.parse(blockResult).length-1].Value.status) == "0"){
+                                                if((JSON.parse(blockResult)[JSON.parse(blockResult).length-1].Value.status) == "1"){
                                                     if(m == (JSON.parse(blockResult)).length-1){
                                                         m++;
                                                     }else{
@@ -106,6 +109,7 @@ router.get('/', function (req, res, next) {
                                                 
                                             // }
                                             //calTime(stampArr);
+                                            console.log("1234!!!!", stampArr);
                                             console.log(calTime(stampArr));
                                             Min = calTime(stampArr)
                                             try {
@@ -165,7 +169,15 @@ const calTime = (stampArr) => {
     let totalTime = 0;
     for(i=stampArr.length/2; i>0; i--){
         totalTime += stampArr[2*i-1]-stampArr[2*i-2];
+        // console.log('iiiiiiiiiiiii',2*i-1);
     }
     return totalTime = (totalTime/(1000*60));
     
 }
+
+// const calTime = (FinalResultArr) => {
+//     let totalTime = 0;
+//     for (i = FinalResultArr.length / 2; i > 0; i--) {
+//         totalTime += FinalResultArr[2 * i - 1] - FinalResultArr[2 * i - 2];
+//         // console.log('iiiiiiiiiiiii',i);
+//     }
