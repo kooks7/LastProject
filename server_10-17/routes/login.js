@@ -26,8 +26,8 @@ router.get('/', function (req, res, next) {
                         },
                         (err, result) => {
                             console.log(result);
-                            if (err) {
-                                console.log(err);
+                            if (!result) {
+                                console.log(err)
                             } else {
                                 if (result == null) {
 
