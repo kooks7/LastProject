@@ -73,7 +73,7 @@ router.get('/', function (req, res) {
                                     FinalResultObj.id = member_no;
                                     FinalResultObj.date = timeConvertDay(parseInt(JSON.parse(blockResult)[m].Value.timestamp));
                                     FinalResultObj.time = timeConvertTime(parseInt(JSON.parse(blockResult)[m].Value.timestamp));
-                                    FinalResultObj.type = ((JSON.parse(blockResult))[m].Value.status == "0")?"퇴근":"출근";
+                                    FinalResultObj.type = ((JSON.parse(blockResult))[m].Value.status == "1")?"퇴근":"출근";
 
                                     totalArr.push(FinalResultObj);
                                     FinalResultArr.push((JSON.parse(blockResult)[m].Value.timestamp));
