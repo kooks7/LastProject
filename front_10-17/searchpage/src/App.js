@@ -63,7 +63,7 @@ class App extends React.Component {
         dept
       }
     }
-      = await axios.get('http://localhost:9000/login', {
+      = await axios.get('http://70.12.229.178:9000/login', {
         params: {
           id: this.state.id,
           pw: this.state.pw,
@@ -76,7 +76,7 @@ class App extends React.Component {
 
 
   Logout = () => {
-    this.setState({ isLogin: true, isTimeLog: false, isAdmin: false, login: false })
+    this.setState({ id:'' , pw:'', isLogin: true, isTimeLog: false, isAdmin: false, login: false })
   }
 
   TimeLog = async () => {
@@ -86,7 +86,7 @@ class App extends React.Component {
         total
       }
     }
-      = await axios.get('http://localhost:9000/timelogs', {
+      = await axios.get('http://70.12.229.178:9000/timelogs', {
         params: {
           id: this.state.id
         }
@@ -107,7 +107,7 @@ class App extends React.Component {
         FinalResultArr
       }
     }
-      = await axios.get('http://localhost:9000/admins', {
+      = await axios.get('http://70.12.229.178:9000/admins', {
                 params: {
                   dept: this.state.dept,
                   admin: this.state.isAdmin,
@@ -175,7 +175,7 @@ class App extends React.Component {
                     time={timelog.time}
                     type={timelog.type} />
                 ))}
-                <p>이번 주 총 근무시긴은 {this.state.total}분 입니다.</p>
+                <p>이번 주 총 근무시간은 {this.state.total}분 입니다.</p>
               </div>
               :
               <div>
@@ -196,7 +196,7 @@ class App extends React.Component {
                     total={FinalResultArr.FinTotalTime}
                   />
                 ))}
-                <p>10/14(월)~10/16(수) {this.state.dept}팀의 조회 내역입니다.</p>
+                <p>10/14(월)~10/18(금) {this.state.dept}팀의 조회 내역입니다.</p>
               </div>
           }
         </div>
